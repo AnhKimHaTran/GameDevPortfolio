@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games by Anh Tran</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>GAMES BY ANH TRAN</h1>
+        <hr class="header-line">
+        
+        <!-- Navigation Menu -->
+        <nav>
+            <button class="nav-link" data-target="about">About</button>
+            <button class="nav-link active" data-target="games">Games</button>
+            <button class="nav-link" data-target="illustrations">2D Illustrations</button>
+            <button class="nav-link" data-target="animations">2D Animations</button>
+        </nav>
+        
+        <hr class="header-line">
+    </header>
+
+    <main>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="page-section hidden">
+            <h2 class="section-title">About Me</h2>
+            <p class="desc-text">Hello, I am Anh Tran. (Add your bio information here).</p>
+        </section>
+
+        <!-- GAMES SECTION (Default Active Page) -->
+        <section id="games" class="page-section">
+            
+            <div class="project-row">
+                <!-- Left side: Text and Links -->
+                <div class="project-info">
+                    <div class="project-header">
+                        <h2>Your Game Title</h2>
+                        <span class="date">October 2026</span>
+                    </div>
+                    
+                    <p class="desc-text">
+                        A SHORT DESCRIPTION OF YOUR GAME<br>
+                        Details / Mechanics / "A fun quote"<br>
+                        Additional info here.
+                    </p>
+                    
+                    <div class="links-container">
+                        <a href="your-read-more-page.html" class="link-text">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Right side: Images slot (same width, different heights) -->
+                <div class="project-images">
+                    <!-- Referencing your provided image verbatim -->
+                    <img src="image_c95a37.png" alt="Game Screenshot 1" class="pixel-art">
+                    
+                    <!-- You can stack multiple images here, they will all snap to the same width -->
+                    <img src="image_c95a37.png" alt="Game Screenshot 2" class="pixel-art">
+                </div>
+            </div>
+
+            <hr class="section-divider">
+            
+            <!-- You can copy/paste the <div class="project-row"> block above to add a second game! -->
+            
+        </section>
+
+        <!-- 2D ILLUSTRATIONS SECTION -->
+        <section id="illustrations" class="page-section hidden">
+             <h2 class="section-title">2D Illustrations</h2>
+             <div class="gallery-grid">
+                 <!-- Add your illustration image files here -->
+                 <img src="image_c95a37.png" class="pixel-art" alt="Illustration 1">
+             </div>
+        </section>
+
+        <!-- 2D ANIMATIONS SECTION -->
+        <section id="animations" class="page-section hidden">
+             <h2 class="section-title">2D Animations</h2>
+             <div class="gallery-grid">
+                 <!-- Add your GIF or animation files here -->
+                 <img src="image_c95a37.png" class="pixel-art" alt="Animation 1">
+             </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
