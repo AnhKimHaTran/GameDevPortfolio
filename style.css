@@ -208,3 +208,25 @@ nav {
     image-rendering: pixelated;
     image-rendering: crisp-edges;
 }
+
+/* --- Experience Layout --- */
+.experience-grid {
+    display: flex;
+    gap: 60px; /* Space between Unity column and 2D Art column */
+}
+
+.experience-column {
+    flex: 1;
+}
+
+.experience-list {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #606060;
+    font-size: 1.15rem;
+}
+
+.experience-list li {
+    margin-bottom: 6px; /* Tightens the vertical gap between bullet points */
+    line-height: 1.3;
+}
