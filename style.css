@@ -22,6 +22,7 @@ h1 {
     color: #000000;
     margin-bottom: 25px;
     letter-spacing: 1px;
+    font-weight: 400;
 }
 
 hr.header-line {
@@ -90,12 +91,14 @@ nav {
 .project-header h2 {
     font-size: 2.1rem;
     color: #000000;
+    font-weight: 400;
 }
 
 .project-header .date {
     color: #606060;
     font-size: 1.15rem;
     margin: 0;
+    font-weight: 400;
 }
 
 /* Content Row: Text on Left, Images on Right */
