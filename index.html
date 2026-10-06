@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games by Anh Tran</title>
+    
+    <!-- Google Font: EB Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,40 +39,46 @@
         <section id="games" class="page-section">
             
             <div class="project-row">
-                <!-- Left side: Text and Links -->
-                <div class="project-info">
-                    <div class="project-header">
-                        <h2>Frame By Frame</h2>
-                        <span class="date">September 2026</span>
-                    </div>
-                    
-                    <p class="desc-text">
-                        An interactive puzzle game.
-                        You are a night time security guard at an art museum. However, the priceless paintings "American Gothic" and "Nighthawks" appear to have lost their borders. 
-                        Travel into the paintings' worlds to find their frames - and investigate what caused this anomaly . . . 
-                        <br>
-                        <br>
-                        ➤ This is my entry to SGDA Fall '26 Jam
-                    </p>
-                    
-                    <div class="links-container">
-                        <a href="your-read-more-page.html" class="link-text">Read More</a>
-                    </div>
+                <!-- Top Header: Title on left, Date on far right above screenshots -->
+                <div class="project-header">
+                    <h2>Frame By Frame</h2>
+                    <span class="date">September 2026</span>
                 </div>
 
-                <!-- Right side: Images slot (same width, different heights) -->
-                <div class="project-images">
-                    <!-- Referencing your provided image verbatim -->
-                    <img src="image_c95a37.png" alt="Game Screenshot 1" class="pixel-art">
-                    
-                    <!-- You can stack multiple images here, they will all snap to the same width -->
-                    <img src="image_c95a37.png" alt="Game Screenshot 2" class="pixel-art">
+                <!-- Main Content split into 2 columns -->
+                <div class="project-body">
+                    <!-- Left side: Text, Subtitle, and Indented Links -->
+                    <div class="project-info">
+                        <h3 class="project-tagline">An interactive puzzle game.</h3>
+                        
+                        <p class="desc-text">
+                            You are a night time security guard at an art museum. However, the priceless paintings "American Gothic" and "Nighthawks" appear to have lost their borders.<br><br>
+                            Travel into the paintings' worlds to find their frames - and investigate what caused this anomaly . . .
+                        </p>
+                        
+                        <p class="jam-note">➔ This is my entry to SGDA Fall '26 Jam</p>
+
+                        <!-- Indented links section -->
+                        <div class="links-container">
+                            <div class="build-line">
+                                <span class="build-label">Web Version</span>
+                                <a href="your-web-game-link.html" class="play-btn">Play</a>
+                            </div>
+                            <a href="your-read-more-page.html" class="link-text">Read More</a>
+                        </div>
+                    </div>
+
+                    <!-- Right side: Images slot -->
+                    <div class="project-images">
+                        <img src="image_c95a37.png" alt="Game Screenshot 1" class="pixel-art">
+                        <img src="image_c95a37.png" alt="Game Screenshot 2" class="pixel-art">
+                    </div>
                 </div>
             </div>
 
             <hr class="section-divider">
             
-            <!-- You can copy/paste the <div class="project-row"> block above to add a second game! -->
+            <!-- You can copy/paste the <div class="project-row"> block above to add another game! -->
             
         </section>
 
@@ -74,7 +86,6 @@
         <section id="illustrations" class="page-section hidden">
              <h2 class="section-title">2D Illustrations</h2>
              <div class="gallery-grid">
-                 <!-- Add your illustration image files here -->
                  <img src="image_c95a37.png" class="pixel-art" alt="Illustration 1">
              </div>
         </section>
@@ -83,7 +94,6 @@
         <section id="animations" class="page-section hidden">
              <h2 class="section-title">2D Animations</h2>
              <div class="gallery-grid">
-                 <!-- Add your GIF or animation files here -->
                  <img src="image_c95a37.png" class="pixel-art" alt="Animation 1">
              </div>
         </section>
