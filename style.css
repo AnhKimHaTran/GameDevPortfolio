@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'EB Garamond', Georgia, serif;
+    font-family: 'Libre Baskerville', Georgia, serif;
     background-color: #ffffff;
     color: #000000;
     line-height: 1.1;
@@ -51,7 +51,7 @@ nav {
 .nav-link {
     background: none;
     border: none;
-    font-family: 'EB Garamond', Georgia, serif;
+    font-family: 'Libre Baskerville', Georgia, serif; 
     font-size: 1.2rem;
     color: #606060;
     cursor: pointer;
@@ -152,14 +152,15 @@ nav {
 
 /* Grey Rounded Play Button */
 .play-btn {
-    background-color: #606060; /* Grey background */
+    background-color: #606060;
     color: #ffffff;
     padding: 3px 14px;
-    border-radius: 6px; /* Rounded rectangle */
+    border-radius: 6px;
     text-decoration: none;
     font-size: 1.05rem;
-    font-family: 'EB Garamond', Georgia, serif;
+    font-family: 'Libre Baskerville', Georgia, serif; 
     display: inline-block;
+    font-weight: 400;
 }
 
 .link-text {
