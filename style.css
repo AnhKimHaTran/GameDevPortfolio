@@ -19,7 +19,6 @@ body {
 h1 {
     text-align: center;
     font-size: 2.8rem;
-    font-weight: 700;
     color: #000000;
     margin-bottom: 25px;
     letter-spacing: 1px;
@@ -90,7 +89,6 @@ nav {
 
 .project-header h2 {
     font-size: 2.1rem;
-    font-weight: 700;
     color: #000000;
 }
 
@@ -115,7 +113,6 @@ nav {
 /* Typography & Content Spacing */
 .project-tagline {
     font-size: 1.35rem;
-    font-weight: 700;
     color: #606060;
     margin-bottom: 15px;
     margin-top: 15px;
