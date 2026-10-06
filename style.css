@@ -13,16 +13,17 @@ body {
     max-width: 960px;
     margin: 0 auto;
     padding: 40px 20px;
+    font-weight: 400;
 }
 
 /* Header & Title */
 h1 {
     text-align: center;
     font-size: 2.8rem;
+    font-weight: 600; /* Unbolded header title */
     color: #000000;
     margin-bottom: 25px;
     letter-spacing: 1px;
-    font-weight: 400;
 }
 
 hr.header-line {
@@ -55,8 +56,10 @@ nav {
     color: #606060;
     cursor: pointer;
     text-decoration: underline;
+    font-weight: 400;
 }
 
+/* ONLY this selected navigation link remains bold */
 .nav-link.active {
     color: #000000;
     text-decoration: none;
@@ -90,8 +93,8 @@ nav {
 
 .project-header h2 {
     font-size: 2.1rem;
+    font-weight: 600; /* Unbolded game title */
     color: #000000;
-    font-weight: 400;
 }
 
 .project-header .date {
@@ -116,22 +119,24 @@ nav {
 /* Typography & Content Spacing */
 .project-tagline {
     font-size: 1.35rem;
+    font-weight: 600; /* Unbolded tagline */
     color: #606060;
     margin-bottom: 15px;
     margin-top: 15px;
-    font-weight: 400;
 }
 
 .desc-text {
     color: #606060;
     font-size: 1.15rem;
     margin-bottom: 15px;
+    font-weight: 400;
 }
 
 .jam-note {
     color: #000000;
     font-size: 1.15rem;
     margin-bottom: 20px;
+    font-weight: 400;
 }
 
 /* Indented Links */
@@ -160,12 +165,14 @@ nav {
     font-size: 1.05rem;
     font-family: 'EB Garamond', Georgia, serif;
     display: inline-block;
+    font-weight: 400;
 }
 
 .link-text {
     color: #606060;
     text-decoration: underline;
     font-size: 1.15rem;
+    font-weight: 400;
 }
 
 /* Image Column Layout */
@@ -188,6 +195,7 @@ nav {
 /* Gallery styling for 2D sections */
 .section-title {
     margin-bottom: 20px;
+    font-weight: 400; /* Unbolded section titles */
 }
 
 .gallery-grid {
