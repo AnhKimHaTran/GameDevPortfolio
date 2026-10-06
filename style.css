@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Cambria, Georgia, serif;
+    font-family: 'EB Garamond', Georgia, serif;
     background-color: #ffffff; /* Pure white background */
     color: #000000;
     line-height: 1.4;
@@ -19,8 +19,8 @@ body {
 h1 {
     text-align: center;
     font-size: 2.8rem;
-    font-weight: normal;
-    color: #000000; /* Pure black title */
+    font-weight: 700; /* Bolded main title */
+    color: #000000; /* Pure black */
     margin-bottom: 25px;
     letter-spacing: 1px;
 }
@@ -50,8 +50,8 @@ nav {
 .nav-link {
     background: none;
     border: none;
-    font-family: Cambria, Georgia, serif;
-    font-size: 1.1rem;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.2rem;
     color: #606060;
     cursor: pointer;
     text-decoration: underline;
@@ -61,20 +61,47 @@ nav {
 .nav-link.active {
     color: #000000;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 /* JavaScript Section Toggling */
 .page-section {
-    display: none; /* Hidden by default */
+    display: none;
     margin-top: 40px;
 }
 .page-section:not(.hidden) {
-    display: block; /* Shows section if .hidden class is removed */
+    display: block;
 }
 
-/* Game Project Layout */
+/* Project Container Structure */
 .project-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Header Row: Title on Left, Date on Far Right above screenshots */
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.project-header h2 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+.project-header .date {
+    color: #606060;
+    font-size: 1.15rem;
+}
+
+/* Project Body Flex Grid */
+.project-body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -82,43 +109,62 @@ nav {
 }
 
 .project-info {
-    flex: 1; /* Takes up remaining space on the left */
+    flex: 1;
 }
 
-.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 25px;
+/* Tagline Sub-heading ("An interactive puzzle game.") */
+.project-tagline {
+    font-size: 1.35rem;
+    font-weight: 700; /* Bolded tagline */
+    color: #505050;
+    margin-bottom: 15px;
 }
 
-.project-header h2 {
-    font-size: 2rem;
-    color: #000000;
-}
-
-.project-header .date {
-    color: #606060;
-    font-size: 1.1rem;
-}
-
-/* Text & Links */
+/* Description Text */
 .desc-text {
     color: #606060;
-    font-size: 1.1rem;
-    margin-bottom: 30px;
+    font-size: 1.15rem;
+    margin-bottom: 15px;
 }
 
+/* Black Jam Entry Text */
+.jam-note {
+    color: #000000; /* Pure Black */
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+}
+
+/* Indented Links Container */
 .links-container {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
+    margin-left: 24px; /* Indented text */
+}
+
+.build-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #606060;
+    font-size: 1.15rem;
+}
+
+/* Grey Play Button */
+.play-btn {
+    background-color: #555555;
+    color: #ffffff;
+    padding: 1px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-family: 'EB Garamond', Georgia, serif;
 }
 
 .link-text {
     color: #606060;
     text-decoration: underline;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
 }
 
 /* Image Column Layout */
@@ -126,15 +172,15 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 360px; /* Forces uniform width for all images */
+    width: 360px; /* Aligns and fixes width of screenshots */
     flex-shrink: 0;
 }
 
 .project-images img {
-    width: 100%; /* Adapts exactly to the 360px container width */
-    height: auto; /* Allows height to be whatever it needs to be naturally */
+    width: 100%;
+    height: auto;
     display: block;
-    border: 3px solid #3c424a; /* Added border to match style */
+    border: 3px solid #3c424a;
     padding: 2px;
 }
 
@@ -150,13 +196,13 @@ nav {
 }
 
 .gallery-grid img {
-    width: 300px; /* Set desired gallery image width */
+    width: 300px;
     height: auto;
     border: 2px solid #3c424a;
 }
 
 /* Pixel Art Upscaling */
 .pixel-art {
-    image-rendering: pixelated; /* Ensures small pixel art scales up perfectly sharp without blurring */
+    image-rendering: pixelated;
     image-rendering: crisp-edges;
 }
