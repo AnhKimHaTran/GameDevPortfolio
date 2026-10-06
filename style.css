@@ -91,7 +91,7 @@ nav {
 .project-header h2 {
     font-size: 2.1rem;
     font-weight: 700;
-    color: #606060;
+    color: #000000;
     margin-bottom: 15px;
 }
 
@@ -117,9 +117,9 @@ nav {
 .project-tagline {
     font-size: 1.35rem;
     font-weight: 700;
-    color: #505050;
+    color: #606060;
     margin-bottom: 15px;
-    margin-top: 0;
+    margin-top: 15px;
 }
 
 .desc-text {
