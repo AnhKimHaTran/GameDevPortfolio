@@ -7,7 +7,7 @@
 
 body {
     font-family: 'EB Garamond', Georgia, serif;
-    background-color: #ffffff; /* Pure white background */
+    background-color: #ffffff;
     color: #000000;
     line-height: 1.4;
     max-width: 960px;
@@ -19,8 +19,8 @@ body {
 h1 {
     text-align: center;
     font-size: 2.8rem;
-    font-weight: 700; /* Bolded main title */
-    color: #000000; /* Pure black */
+    font-weight: 700;
+    color: #000000;
     margin-bottom: 25px;
     letter-spacing: 1px;
 }
@@ -57,7 +57,6 @@ nav {
     text-decoration: underline;
 }
 
-/* Selected tab state */
 .nav-link.active {
     color: #000000;
     text-decoration: none;
@@ -73,19 +72,19 @@ nav {
     display: block;
 }
 
-/* Project Container Structure */
-.project-row {
+/* --- Project Layout Structure --- */
+.project-container {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
-/* Header Row: Title on Left, Date on Far Right above screenshots */
+/* Header Row: Title on Left, Date on Right */
 .project-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Spaces the header from the text and images below */
     width: 100%;
 }
 
@@ -93,14 +92,16 @@ nav {
     font-size: 2.1rem;
     font-weight: 700;
     color: #000000;
+    margin: 0;
 }
 
 .project-header .date {
     color: #606060;
     font-size: 1.15rem;
+    margin: 0;
 }
 
-/* Project Body Flex Grid */
+/* Content Row: Text on Left, Images on Right */
 .project-body {
     display: flex;
     justify-content: space-between;
@@ -109,56 +110,56 @@ nav {
 }
 
 .project-info {
-    flex: 1;
+    flex: 1; /* Takes up all remaining space to the left of the images */
 }
 
-/* Tagline Sub-heading ("An interactive puzzle game.") */
+/* Typography & Content Spacing */
 .project-tagline {
     font-size: 1.35rem;
-    font-weight: 700; /* Bolded tagline */
+    font-weight: 700;
     color: #505050;
     margin-bottom: 15px;
+    margin-top: 0;
 }
 
-/* Description Text */
 .desc-text {
     color: #606060;
     font-size: 1.15rem;
     margin-bottom: 15px;
 }
 
-/* Black Jam Entry Text */
 .jam-note {
-    color: #000000; /* Pure Black */
+    color: #000000;
     font-size: 1.15rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-/* Indented Links Container */
+/* Indented Links */
 .links-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-left: 24px; /* Indented text */
+    gap: 10px;
+    margin-left: 24px; /* Indents the links under the entry text */
 }
 
 .build-line {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     color: #606060;
     font-size: 1.15rem;
 }
 
-/* Grey Play Button */
+/* Grey Rounded Play Button */
 .play-btn {
-    background-color: #555555;
+    background-color: #606060; /* Grey background */
     color: #ffffff;
-    padding: 1px 12px;
-    border-radius: 5px;
+    padding: 3px 14px;
+    border-radius: 6px; /* Rounded rectangle */
     text-decoration: none;
     font-size: 1.05rem;
     font-family: 'EB Garamond', Georgia, serif;
+    display: inline-block;
 }
 
 .link-text {
@@ -172,7 +173,7 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 360px; /* Aligns and fixes width of screenshots */
+    width: 360px; /* Forces images to stay on the right side */
     flex-shrink: 0;
 }
 
