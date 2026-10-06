@@ -212,7 +212,7 @@ nav {
 /* --- Experience Layout --- */
 .experience-grid {
     display: flex;
-    gap: 60px; /* Space between Unity column and 2D Art column */
+    gap: 30px; /* Space between Unity column and 2D Art column */
 }
 
 .experience-column {
@@ -223,10 +223,8 @@ nav {
     list-style-type: disc;
     margin-left: 20px;
     color: #606060;
-    font-size: 1.15rem;
 }
 
 .experience-list li {
-    margin-bottom: 6px; /* Tightens the vertical gap between bullet points */
-    line-height: 1.3;
+    line-height: 1.1;
 }
