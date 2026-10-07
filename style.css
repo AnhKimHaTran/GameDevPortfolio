@@ -204,7 +204,7 @@ nav {
 }
 
 .pixelgallery-grid {
-    column-count: 2; /* Adjust to 3 if you want more columns */
+    column-count: 3; /* Adjust to 3 if you want more columns */
     column-gap: 10px;
 }
 
