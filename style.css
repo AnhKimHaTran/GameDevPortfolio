@@ -192,11 +192,23 @@ nav {
 }
 
 .gallery-grid {
-    column-count: 6; /* Adjust to 3 if you want more columns */
+    column-count: 3; /* Adjust to 3 if you want more columns */
     column-gap: 10px;
 }
 
 .gallery-grid img {
+    width: 100%; /* Fills the dynamic column width */
+    height: auto; /* Respects the unique height of the art */
+    margin-bottom: 20px; /* Replaces gap for vertical spacing */
+    display: block;
+}
+
+.pixelgallery-grid {
+    column-count: 2; /* Adjust to 3 if you want more columns */
+    column-gap: 10px;
+}
+
+.pixelgallery-grid img {
     width: 100%; /* Fills the dynamic column width */
     height: auto; /* Respects the unique height of the art */
     margin-bottom: 20px; /* Replaces gap for vertical spacing */
