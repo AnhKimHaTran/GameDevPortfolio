@@ -192,8 +192,8 @@ nav {
 }
 
 .gallery-grid {
-    column-count: 2; /* Adjust to 3 if you want more columns */
-    column-gap: 20px;
+    column-count: 3; /* Adjust to 3 if you want more columns */
+    column-gap: 10px;
 }
 
 .gallery-grid img {
