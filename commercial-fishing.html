@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Fishing - Anh Tran</title>
+    
+    <!-- Google Font: Libre Baskerville -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Uses your exact same stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>GAMES BY ANH TRAN</h1>
+        <hr class="header-line">
+        
+        <!-- Navigation Menu: Links back to index.html with specific #hashes -->
+        <nav>
+            <a href="index.html#about" class="nav-link">About</a>
+            <a href="index.html#games" class="nav-link">Games</a>
+            <a href="index.html#illustrations" class="nav-link">2D Illustrations</a>
+            <a href="index.html#animations" class="nav-link">2D Animations</a>
+        </nav>
+        
+        <hr class="header-line">
+    </header>
+
+    <main>
+        <!-- Because this is a dedicated page, we remove the "hidden" class and ID targets -->
+        <section class="page-section" style="display: block;">
+            
+            <!-- Commercial Fishing Main Header -->
+            <div class="project-container">
+                <div class="project-header">
+                    <h2>Commercial Fishing</h2>
+                    <span class="date">May 2025</span>
+                </div>
+
+                <div class="project-body">
+                    
+                    <!-- Text Info Column -->
+                    <div class="project-info">
+                        <h2 class="section-title">About Game</h2>
+                        
+                        <p class="desc-text">
+                            <i>Commercial Fishing</i> is a one-minute survival game. Two fishermen on a night boat are surrounded by sea anomalies, and the player holds them off with a single searchlight. One hit on the boat ends the run.
+                        </p>
+                        
+                        <br>
+                        <p class="jam-note">➤ Entry for Mini Code For A Cause. Developed in 24 hours for the theme "You Only Get One."</p>
+                        <p class="jam-note">➤ Role: Solo Developer &amp; Artist</p>
+                        <br>
+
+                        <div class="links-container" style="align-items: flex-end;">
+                            <div class="build-line">
+                                <span class="build-label">Web Version</span>
+                                <a href="https://ducktran.itch.io/commercial-fishing" class="play-btn" target="_blank">Play</a>
+                            </div>
+                            <a href="https://itch.io/jam/mini-code-for-a-cause/rate/3590032" class="link-text" target="_blank">Results</a>
+                            <a href="https://github.com/AnhKimHaTran/CommercialFishing" class="link-text" target="_blank">Open Source Code</a>
+                        </div>
+                    </div>
+                    <!-- END Text Info Column -->
+    
+                </div>
+            </div>
+
+            <hr class="section-divider">
+            
+            <div class="project-info">
+                <h2 class="section-title">Solo Developer &amp; Artist</h2>
+                <p class="desc-text">
+                    I designed, programmed, and drew the entire game in Unity 2022.3 with C#.
+                </p>
+                <ul class="experience-list">
+                    <li>Built a mouse-driven searchlight that freezes and dispels enemies.</li>
+                    <li>Programmed an enemy spawner that sends anomalies toward the boat from all four screen edges.</li>
+                    <li>Implemented a one-minute survival timer with a progress bar and win and lose cutscenes on Unity Timeline.</li>
+                    <li>Wrote a typewriter dialogue system shared by the intro and ending scenes.</li>
+                    <li>Drew all 2D pixel art and animations.</li>
+                </ul>
+
+                <br><br>
+
+                <h2 class="section-title">Mechanics</h2>
+
+                <h3 class="project-tagline">Light and Enemy States</h3>
+                <p class="desc-text">
+                    The searchlight follows the mouse with a lerp, so it trails slightly behind the cursor and takes skill to aim. Each anomaly moves toward the boat until the light touches it. It then freezes, and if the light holds on it for one second, it plays a dispel animation and is destroyed. If the light slips off early, the anomaly resumes its approach, so the player has to commit to each target.
+                </p>
+                
+                <br>
+                <h3 class="project-tagline">Spawning and Win/Lose</h3>
+                <p class="desc-text">
+                    A spawner places a new anomaly every two seconds at a random point just off one of the four screen edges. A progress bar fills over the minute; when it's full, spawning stops, the remaining enemies are cleared, and the win cutscene plays. If an anomaly reaches the boat, the camera shakes and the lose cutscene plays, with an option to restart.
+                </p>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="project-info">
+                <h2 class="section-title">Art</h2>
+                <p class="desc-text">
+                    I drew all of the game's art as 2D pixel art.
+                </p>
+                <ul class="experience-list">
+                    <li>The fishing boat, with an idle animation.</li>
+                    <li>The sea anomaly, animated in three states: moving, caught in the light, and dispelling.</li>
+                    <li>Animated normal and dark wave backgrounds.</li>
+                    <li>Portraits of Bill and Phil, the dialogue frame, the cursor, and the pause screen.</li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
