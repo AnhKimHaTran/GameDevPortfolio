@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Flying Dutchman - Anh Tran</title>
+    
+    <!-- Google Font: Libre Baskerville -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Uses your exact same stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>GAMES BY ANH TRAN</h1>
+        <hr class="header-line">
+        
+        <!-- Navigation Menu: Links back to index.html with specific #hashes -->
+        <nav>
+            <a href="index.html#about" class="nav-link">About</a>
+            <a href="index.html#games" class="nav-link">Games</a>
+            <a href="index.html#illustrations" class="nav-link">2D Illustrations</a>
+            <a href="index.html#animations" class="nav-link">2D Animations</a>
+        </nav>
+        
+        <hr class="header-line">
+    </header>
+
+    <main>
+        <!-- Because this is a dedicated page, we remove the "hidden" class and ID targets -->
+        <section class="page-section" style="display: block;">
+            
+            <!-- The Flying Dutchman Main Header -->
+            <div class="project-container">
+                <div class="project-header">
+                    <h2>The Flying Dutchman</h2>
+                    <span class="date">May 2025</span>
+                </div>
+
+                <div class="project-body">
+                    
+                    <!-- Text Info Column -->
+                    <div class="project-info">
+                        <h2 class="section-title">About Game</h2>
+                        
+                        <p class="desc-text">
+                            <i>The Flying Dutchman</i> is a side-scrolling chase game. The player captains a Union ironclad in 1862, fleeing a ghost ship through a storm of whirlpools, tentacles, and lightning.
+                        </p>
+                        
+                        <br>
+                        <p class="jam-note">➤ Entry for Pursuing Pixels James Jam Game Gam #4. Developed in 48 hours for the theme "Positioning."</p>
+                        <p class="jam-note">➤ Role: Solo Developer &amp; Artist</p>
+                        <br>
+
+                        <div class="links-container" style="align-items: flex-end;">
+                            <div class="build-line">
+                                <span class="build-label">Web Version</span>
+                                <a href="https://ducktran.itch.io/the-flying-dutchman" class="play-btn" target="_blank">Play</a>
+                            </div>
+                            <a href="https://itch.io/jam/pursuing-pixels-james-jam-game-gam-4/rate/3600962" class="link-text" target="_blank">Results</a>
+                            <a href="https://github.com/AnhKimHaTran/TheFlyingDutchman" class="link-text" target="_blank">Open Source Code</a>
+                        </div>
+                    </div>
+                    <!-- END Text Info Column -->
+    
+                </div>
+            </div>
+
+            <hr class="section-divider">
+            
+            <div class="project-info">
+                <h2 class="section-title">Solo Developer &amp; Artist</h2>
+                <p class="desc-text">
+                    I designed, programmed, and drew the entire game in Unity 2022.3 with C#.
+                </p>
+                <ul class="experience-list">
+                    <li>Built a position-based chase system where every hit pushes the player closer to the pursuing ship.</li>
+                    <li>Programmed three timed hazards: whirlpools, latching tentacles, and telegraphed lightning strikes.</li>
+                    <li>Implemented two-directional cannon fire for clearing tentacles.</li>
+                    <li>Scripted cutscenes with Unity Timeline, including a branching Yes/No choice and three endings.</li>
+                    <li>Wrote a typewriter dialogue system with speaker portraits and music crossfades.</li>
+                    <li>Drew all 2D pixel art and animations.</li>
+                </ul>
+
+                <br><br>
+
+                <h2 class="section-title">Mechanics</h2>
+
+                <h3 class="project-tagline">Position as Health</h3>
+                <p class="desc-text">
+                    The player has no health bar. Instead, the ship's horizontal position is the health. The ship follows the mouse vertically through a lerp, while a target x-value sets how far ahead it is. Each hit lowers that value, pulling the ship back toward the Flying Dutchman, which tracks the player's height from the left edge. Falling past a threshold or touching the ghost ship triggers the bad ending. In the second phase, holding Shift pushes the target forward again.
+                </p>
+                
+                <br>
+                <h3 class="project-tagline">Hazards</h3>
+                <p class="desc-text">
+                    Each hazard has its own spawner on a timer.
+                </p>
+                <ul class="experience-list">
+                    <li><strong>Whirlpools</strong> spawn at random heights, scroll left, and knock the ship back on contact.</li>
+                    <li><strong>Tentacles</strong> rise from above or below the player's position. On contact they latch onto the ship, slowing it and dragging it back until it breaks free.</li>
+                    <li><strong>Lightning</strong> first shows a warning on the water, then sweeps a row of strikes across the screen with camera shake.</li>
+                </ul>
+                <p class="desc-text">
+                    The player fires cannonballs up or down (Z/X) on a 0.5-second cooldown. A cannonball destroys a tentacle on impact.
+                </p>
+                
+                <br>
+                <h3 class="project-tagline">Cutscenes and Dialogue</h3>
+                <p class="desc-text">
+                    The story runs on Unity Timeline, with an early Yes/No choice that branches the intro and three endings. Dialogue is typed out character by character, with portraits that switch between the captain and the lieutenant. Music crossfades between calm and chase tracks through coroutines called from the Timeline.
+                </p>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="project-info">
+                <h2 class="section-title">Art</h2>
+                <p class="desc-text">
+                    I drew all of the game's art as 2D pixel art.
+                </p>
+                <ul class="experience-list">
+                    <li>The ironclad, the Flying Dutchman, and a storm effect.</li>
+                    <li>Animated cannonballs, whirlpools, tentacles, and lightning (warning and strike frames).</li>
+                    <li>Scrolling wave backgrounds and animated title and ending screens.</li>
+                    <li>Portraits of the captain and the lieutenant.</li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
