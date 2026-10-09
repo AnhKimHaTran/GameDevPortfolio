@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dead Letter Office - Anh Tran</title>
+    
+    <!-- Google Font: Libre Baskerville -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Uses your exact same stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>GAMES BY ANH TRAN</h1>
+        <hr class="header-line">
+        
+        <!-- Navigation Menu: Links back to index.html with specific #hashes -->
+        <nav>
+            <a href="index.html#about" class="nav-link">About</a>
+            <a href="index.html#games" class="nav-link">Games</a>
+            <a href="index.html#illustrations" class="nav-link">2D Illustrations</a>
+            <a href="index.html#animations" class="nav-link">2D Animations</a>
+        </nav>
+        
+        <hr class="header-line">
+    </header>
+
+    <main>
+        <!-- Because this is a dedicated page, we remove the "hidden" class and ID targets -->
+        <section class="page-section" style="display: block;">
+            
+            <!-- Dead Letter Office Main Header -->
+            <div class="project-container">
+                <div class="project-header">
+                    <h2>Dead Letter Office</h2>
+                    <span class="date">June 2025</span>
+                </div>
+
+                <div class="project-body">
+                    
+                    <!-- Text Info Column -->
+                    <div class="project-info">
+                        <h3 class="project-tagline">The Game</h3>
+                        
+                        <p class="desc-text">
+                            <i>Dead Letter Office</i> is a document-inspection game inspired by <i>Papers, Please</i>. The player sorts undeliverable mail in a neutral nation caught between two countries at war, cross-referencing books to identify each sender and receiver and discarding mail with invalid stamps. Mistakes cost salary.
+                        </p>
+                        
+                        <br>
+                        <p class="jam-note">➤ Developed as a passion project, a tribute to the Papers, Please genre.</p>
+                        <p class="jam-note">➤ Role: Solo Developer &amp; Artist</p>
+                        <br>
+
+                        <div class="links-container" style="align-items: flex-end;">
+                            <div class="build-line">
+                                <span class="build-label">Web Version</span>
+                                <a href="https://ducktran.itch.io/dead-letter-office" class="play-btn" target="_blank">Play</a>
+                            </div>
+                            <a href="https://github.com/AnhKimHaTran/DeadLetterOffice_Day1" class="link-text" target="_blank">Open Source Code</a>
+                        </div>
+                    </div>
+                    <!-- END Text Info Column -->
+    
+                </div>
+            </div>
+
+            <hr class="section-divider">
+            
+            <div class="project-info">
+                <h2 class="section-title">Solo Developer &amp; Artist</h2>
+                <p class="desc-text">
+                    I designed, programmed, and drew the entire game in Unity 2022.3 with C#.
+                </p>
+                <ul class="experience-list">
+                    <li>Built a procedural mail generator that assembles each envelope at runtime from nation, province, stamp, and letter prefabs.</li>
+                    <li>Structured all game content in a central dataset: three nations, ten provinces, stamp pools, letter text, and name lists.</li>
+                    <li>Wrote a validation system that checks the player's review sheet against the generated mail and issues a penalty ticket for each violation.</li>
+                    <li>Implemented drag-and-drop with live drop shadows and a z-ordered document stack.</li>
+                    <li>Built multi-page reference books (a rulebook and a tourist guide) with page flipping and hover states.</li>
+                    <li>Scripted the Day 1 tutorial with Unity Timeline cutscenes and a typewriter-style dialogue system with auto-sizing text boxes.</li>
+                    <li>Built the end-of-day economy screen (salary, penalties, rent, food, heat) and a pooled audio system with separate volume controls for SFX and ambience.</li>
+                    <li>Drew all 2D pixel art: envelopes, stamps, letters, reference books, the desk, and the UI.</li>
+                </ul>
+
+                <br><br>
+
+                <h2 class="section-title">Mechanics</h2>
+
+                <h3 class="project-tagline">Procedural Mail Generation</h3>
+                <p class="desc-text">
+                    Every piece of mail is assembled at runtime from layered prefabs, so no two envelopes are the same. The generator builds each one in four steps:
+                </p>
+                <ol class="experience-list" style="list-style-type: decimal; margin-bottom: 15px;">
+                    <li><strong>Nation and envelope.</strong> It picks a sender nation, then a random envelope prefab from that nation's pool. Each nation has its own envelope colors and shapes.</li>
+                    <li><strong>Province and stamp.</strong> It picks a province within that nation, then a stamp prefab from that province's stamp pool.</li>
+                    <li><strong>Stamp placement.</strong> The stamp is instantiated as a child of the envelope at a random position and a random tilt of up to ±10°, so each stamp looks hand-placed.</li>
+                    <li><strong>Letter.</strong> When the player opens the mail, a letter prefab is instantiated with randomized text, sender name, and receiver name.</li>
+                </ol>
+                <p class="desc-text">
+                    Each envelope has its own stamp bounds, stored as a flat float array in the Inspector and reshaped into a 2D array at startup. Stamps are looked up through a province-to-prefab dictionary.
+                </p>
+                <p class="desc-text">
+                    The generated values are stored on the envelope in a MailProperties component, which serves as the answer key. Letter text is drawn per province and removed from the pool once used, so letters don't repeat.
+                </p>
+                <p class="desc-text">
+                    Invalid mail comes from a reserved "Discard" province with its own stamps. Generation flags can force a mail to be valid or faulty, so the Day 1 tutorial is scripted through the same generator.
+                </p>
+                
+                <br>
+                <h3 class="project-tagline">Review and Validation</h3>
+                <p class="desc-text">
+                    The player fills in a review sheet whose nation and province fields are linked, so changing the nation limits the province options. On submit, the validator compares each field against MailProperties and prints a penalty ticket naming the first mismatch. The results feed an end-of-day salary screen.
+                </p>
+                
+                <br>
+                <h3 class="project-tagline">Desk Interaction</h3>
+                <p class="desc-text">
+                    Dragging a document lifts it to the top of a z-sorted stack and spawns a stripped-down shadow clone that follows behind it. The reference books use enum-based page states to swap sprites and content.
+                </p>
+                
+                <br>
+                <h3 class="project-tagline">Architecture</h3>
+                <p class="desc-text">
+                    Scripts are grouped by object type, with each object's art, animations, and code in one folder, and organized into namespaces such as mailGenerator and interactObjects. Cutscenes run on Unity Timeline and call public methods on the audio pool and score tracker. The audio pool stores each source with its maximum volume in tuples, so one slider can scale all sound effects at once.
+                </p>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="project-info">
+                <h2 class="section-title">Art</h2>
+                <p class="desc-text">
+                    I drew all of the game's art as 2D pixel art. The stamps and envelopes were designed as separate layers so the generator could combine them freely.
+                </p>
+                <ul class="experience-list">
+                    <li>Five envelope designs, plus torn variants for story mail.</li>
+                    <li>Twenty stamps across three nations, including invalid stamps for the discard rule.</li>
+                    <li>Letter paper styles for each nation, including a torn letter.</li>
+                    <li>A rulebook with stamp reference pages and a world map, and a tourist guide with ten province illustrations.</li>
+                    <li>The desk, coffee cup, typewriter, review sheet, penalty ticket, bill, custom cursor, and game icon.</li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
