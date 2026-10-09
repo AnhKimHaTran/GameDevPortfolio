@@ -102,6 +102,7 @@
                     The typing system reads raw keyboard input each frame and checks it against one target word at a time with a prefix match. Feedback is rendered with TextMeshPro rich text: correct characters in white, the rest of the word as grey ghost text, and a mistake in yellow. A mistake locks input until it is backspaced, and each error is logged for the results screen.
                 </p>
                 
+                <br>
                 <h3 class="project-tagline">Linked Documents Across Two Desks</h3>
                 <p class="desc-text">
                     Each document spawns as a pair of prefabs: a small copy at the typewriter and a large, readable copy on the other desk. Each copy holds a reference to its partner. When a dragged copy crosses the desk boundary, it hands the drag to its partner at the cursor, so the paper appears to resize mid-drag.
@@ -110,6 +111,7 @@
                     Draw order is handled by a shared stack. Clicking a document moves it to the top and reassigns the z-depth of every document and its children.
                 </p>
                 
+                <br>
                 <h3 class="project-tagline">Data Parsing and Document Pipeline</h3>
                 <p class="desc-text">
                     All document data loads from text files before the first scene, so no content is hard-coded into scenes.
@@ -120,7 +122,8 @@
                     <li><strong>Spawning.</strong> The spawner slices flat Inspector lists of prefabs into per-day batches using the parsed counts, so art and text stay in order. Each document's string is then split into a word array for the typing validator.</li>
                     <li><strong>Other files.</strong> Chapter cards reuse the // format, and voice transcripts are parsed with a regex into timestamped subtitle lines.</li>
                 </ul>
-                
+
+                <br>
                 <h3 class="project-tagline">Adaptive Timer</h3>
                 <p class="desc-text">
                     Each document's time limit scales to the player: its word count divided by the player's measured WPM, plus a 15-second grace period. WPM uses the standard five-characters-per-word formula and only counts time spent actively typing. On timeout, an event marks the report late and skips the decision step.
@@ -131,6 +134,7 @@
                     After each document, the player sends or discards the report by dragging it onto a tray. The outcome (Send, Discard, or Late) is combined with the day and document index into a file key, such as Day1_Doc2_Send. If a matching audio clip and transcript exist, a voicemail plays before the next document; if not, the game moves on. A new reaction needs only two files and no code.
                 </p>
                 
+                <br>
                 <h3 class="project-tagline">Architecture</h3>
                 <p class="desc-text">
                     Systems communicate through static C# events (the observer pattern) instead of direct references. For example, one typing-state property drives the keys, the text, the carriage, and the paper exit through a single event.
