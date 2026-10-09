@@ -44,14 +44,18 @@
                     
                     <!-- Text Info Column -->
                     <div class="project-info">
-                        <h3 class="project-tagline">A Historical Typing Simulator</h3>
+                        <p class="desc-text">
+                            About Game 
+                        </p>
                         
                         <p class="desc-text">
-                            A U.S. history simulation game. You play as a typist for the Office of Naval Intelligence, c. 1890-1929. 
+                            The player is a typist for the Office of Naval Intelligence (1890–1929) who transcribes intelligence reports and decides whether to send or discard each one.
                         </p>
+                        
                         <p class="desc-text">
-                            Transcribe documents, learn about the early imperial age of America, and question everything.
+                            Across four days and nine primary-source documents, the game traces American imperialism from the Spanish-American War to World War I.
                         </p>
+                        
                         <br>
                         <p class="jam-note">➤ Developed for my high school AP Capstone Research project.</p>
                         <p class="jam-note">➤ Role: Solo Developer </p>
@@ -65,11 +69,8 @@
                             <a href="https://ducktran.itch.io/oni-acts-of-omission/devlog/1451944/oni-devlog-1-blog-of-omission" class="link-text" target="_blank">Development Log</a>
                         </div>
                     </div>
-
-                    <!-- Main Image Column -->
-                    <div class="project-images">
-                        <img src="Images/GameGallery/oni2.gif" alt="O.N.I. Gameplay GIF" class="pixel-art">
-                    </div>
+                    <!-- END Text Info Column -->
+    
                 </div>
             </div>
 
@@ -77,26 +78,72 @@
             
             <!-- Expanded Details Section (You can write more about your dev process here) -->
             <div class="project-info">
-                <h2 class="section-title">About The Project</h2>
+                <h2 class="section-title">Solo Programmer</h2>
                 <p class="desc-text">
-                    This game was developed to explore the intersection of early American imperialism and interactive storytelling. 
-                    As a solo developer, I handled the programming in Unity, as well as the historical research required to accurately simulate 
-                    documents from the 1890s to 1929.
+                    I built every system and drew every asset in the game with Unity 2022.3 between March and May 2026.
+                </p>
+                <ul class="experience-list">
+                    <li>Programmed the core typing system: word-by-word input checking, live mistake feedback, and words-per-minute tracking.</li>
+                    <li>Built a two-desk document system, where each paper can be dragged between a small copy and a large, readable copy.</li>
+                    <li>Wrote a data-driven content pipeline. Documents, chapter cards, and subtitles all load from plain text files.</li>
+                    <li>Implemented a timer that adjusts to the player's own typing speed.</li>
+                    <li>Built the Send/Discard decision and a voicemail system that reacts to each choice.</li>
+                    <li>Created the audio layer: a named sound-effect library, music that persists across scenes, and subtitled voice lines.</li>
+                    <li>Handled the game flow across a menu, four day scenes, and an ending, with fades and an end-of-day results screen.</li>
+                    <li>Locked the game to a 16:9 ratio with letterboxing, so it displays correctly on desktop and in the browser.</li>
+                    <li>Drew the 2D pixel art: the desk, the typewriter and its keys, the period documents, and the UI.</li>
+                    <li>Set up a GitHub Actions workflow that exports the accompanying research paper from Google Docs each night and commits it to the repository as a PDF.</li>
+                </ul>
+
+                <h2 class="section-title">Mechanics</h2>
+
+                <h3 class="project-tagline">Typing and Input Validation</h3>
+                <p class="desc-text">
+                    The typing system reads raw keyboard input each frame and checks it against one target word at a time with a prefix match. Feedback is rendered with TextMeshPro rich text: correct characters in white, the rest of the word as grey ghost text, and a mistake in yellow. A mistake locks input until it is backspaced, and each error is logged for the results screen.
+                </p>
+                
+                <h3 class="project-tagline">Linked Documents Across Two Desks</h3>
+                <p class="desc-text">
+                    Each document spawns as a pair of prefabs: a small copy at the typewriter and a large, readable copy on the other desk. Each copy holds a reference to its partner. When a dragged copy crosses the desk boundary, it hands the drag to its partner at the cursor, so the paper appears to resize mid-drag.
                 </p>
                 <p class="desc-text">
-                    <i>(Placeholder: You can add more paragraphs here detailing your development process, challenges faced, or how you created the pixel art assets!)</i>
+                    Draw order is handled by a shared stack. Clicking a document moves it to the top and reassigns the z-depth of every document and its children.
+                </p>
+                
+                <h3 class="project-tagline">Data Parsing and Document Pipeline</h3>
+                <p class="desc-text">
+                    All document data loads from text files before the first scene, so no content is hard-coded into scenes.
+                </p>
+                <ul class="experience-list">
+                    <li><strong>Parsing.</strong> Documents.txt is loaded as a TextAsset, split on every line-ending style, and trimmed. A // line closes each day, producing a List&lt;List&lt;string&gt;&gt; of days and documents.</li>
+                    <li><strong>Indexing.</strong> Two indices walk this list: a day index, parsed from the scene name with int.TryParse, and a document index. Out-of-range requests return a sentinel string instead of throwing.</li>
+                    <li><strong>Spawning.</strong> The spawner slices flat Inspector lists of prefabs into per-day batches using the parsed counts, so art and text stay in order. Each document's string is then split into a word array for the typing validator.</li>
+                    <li><strong>Other files.</strong> Chapter cards reuse the // format, and voice transcripts are parsed with a regex into timestamped subtitle lines.</li>
+                </ul>
+                
+                <h3 class="project-tagline">Adaptive Timer</h3>
+                <p class="desc-text">
+                    Each document's time limit scales to the player: its word count divided by the player's measured WPM, plus a 15-second grace period. WPM uses the standard five-characters-per-word formula and only counts time spent actively typing. On timeout, an event marks the report late and skips the decision step.
+                </p>
+                
+                <h3 class="project-tagline">Branching Reactions</h3>
+                <p class="desc-text">
+                    After each document, the player sends or discards the report by dragging it onto a tray. The outcome (Send, Discard, or Late) is combined with the day and document index into a file key, such as Day1_Doc2_Send. If a matching audio clip and transcript exist, a voicemail plays before the next document; if not, the game moves on. A new reaction needs only two files and no code.
+                </p>
+                
+                <h3 class="project-tagline">Architecture</h3>
+                <p class="desc-text">
+                    Systems communicate through static C# events (the observer pattern) instead of direct references. For example, one typing-state property drives the keys, the text, the carriage, and the paper exit through a single event.
+                </p>
+                <p class="desc-text">
+                    Persistent singletons carry the game state, timer, and music across scenes, and re-bind to each new scene's objects on load. The camera is letterboxed to 16:9 and recalculated on window resize, which keeps the WebGL build correct in fullscreen.
                 </p>
             </div>
 
-            <br><br>
+            <hr class="section-divider">
 
-            <!-- Expanded Screenshot Gallery -->
-            <h2 class="section-title">Screenshot Gallery</h2>
-            <!-- Reusing your perfectly working 2-column grid from earlier -->
-            <div class="pixelgallery-grid">
-                <img src="Images/GameGallery/oni3.png" alt="O.N.I. Screenshot 1" class="pixel-art">
-                <!-- Add more images here if you have them! -->
-                <!-- <img src="Images/GameGallery/oni4.png" alt="O.N.I. Screenshot 2" class="pixel-art"> -->
+            <div class="project-info">
+                <h2 class="section-title">Art</h2>
             </div>
 
         </section>
