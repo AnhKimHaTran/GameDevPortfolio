@@ -89,7 +89,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 10px; /* Spaces the header from the text and images below */
+    margin-bottom: 10px;
     width: 100%;
 }
 
@@ -114,7 +114,7 @@ nav {
 }
 
 .project-info {
-    flex: 1; /* Takes up all remaining space to the left of the images */
+    flex: 1;
 }
 
 /* Typography & Content Spacing */
@@ -143,7 +143,7 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-left: 30px; /* Indents the links under the entry text */
+    margin-left: 30px;
 }
 
 .build-line {
@@ -178,7 +178,7 @@ nav {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 360px; /* Forces images to stay on the right side */
+    width: 360px;
     flex-shrink: 0;
 }
 
@@ -195,22 +195,22 @@ nav {
 }
 
 .gallery-grid {
-    column-count: 3; /* Adjust to 3 if you want more columns */
+    column-count: 3;
     column-gap: 10px;
 }
 
 .gallery-grid img {
-    width: 100%; /* Fills the dynamic column width */
-    height: auto; /* Respects the unique height of the art */
-    margin-bottom: 20px; /* Replaces gap for vertical spacing */
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
     display: block;
 }
 
 .pixelgallery-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Strictly forces 2 equal-width columns */
-    gap: 15px; /* Handles spacing between all images automatically */
-    align-items: start; /* Prevents shorter images from stretching to match taller ones in the same row */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    align-items: start;
 }
 
 .pixelgallery-grid img {
@@ -228,7 +228,7 @@ nav {
 /* --- Experience Layout --- */
 .experience-grid {
     display: flex;
-    gap: 30px; /* Space between Unity column and 2D Art column */
+    gap: 30px;
 }
 
 .experience-column {
