@@ -282,12 +282,13 @@ nav {
 /* --- Text on the left, image on the right --- */
 .text-with-image {
     display: flex;
-    align-items: flex-start;
+    align-items: center;   /* was flex-start: centers the GIF against the text */
     gap: 30px;
 }
 
-.text-with-image .text-column {
-    flex: 1;
+/* Remove the extra bottom margin from the last paragraph in the text column */
+.text-with-image .text-column > :last-child {
+    margin-bottom: 0;
 }
 
 .text-with-image .side-image {
