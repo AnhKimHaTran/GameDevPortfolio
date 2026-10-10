@@ -294,6 +294,7 @@ nav {
 .text-with-image .side-image {
     width: 360px;
     flex-shrink: 0;
+    align-self: center;   /* centers the GIF vertically against the text column */
 }
 
 .text-with-image .side-image img {
