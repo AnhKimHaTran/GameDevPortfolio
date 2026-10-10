@@ -40,6 +40,16 @@
                     <span class="date">May 2026</span>
                 </div>
 
+                <div class="video-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/veNgvVbLoL0"
+                        title="O.N.I. Acts of Omission gameplay"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
                 <div class="project-body">
                     
                     <!-- Text Info Column -->
@@ -57,16 +67,7 @@
                         <br>
                         <p class="jam-note">➤ Developed for my high school AP Capstone Research project.</p>
                         <p class="jam-note">➤ Role: Solo Developer </p>
-                        <br>
 
-                        <div class="links-container" style="align-items: flex-end;">
-                            <div class="build-line">
-                                <span class="build-label">Web Version</span>
-                                <a href="https://ducktran.itch.io/oni-acts-of-omission" class="play-btn" target="_blank">Play</a>
-                            </div>
-                            <a href="https://ducktran.itch.io/oni-acts-of-omission/devlog/1451944/oni-devlog-1-blog-of-omission" class="link-text" target="_blank">Development Log</a>
-                            <a href="https://github.com/KimHaAnhTran/ONI_ActsOfOmission" class="link-text">Open Source Code</a>
-                        </div>
                     </div>
                     <!-- END Text Info Column -->
     
@@ -102,15 +103,19 @@
                 <p class="desc-text">
                     The typing system reads raw keyboard input each frame and checks it against one target word at a time with a prefix match. Feedback is rendered with TextMeshPro rich text: correct characters in white, the rest of the word as grey ghost text, and a mistake in yellow. A mistake locks input until it is backspaced, and each error is logged for the results screen.
                 </p>
+                <img src="Images/ONI/oni1.gif" alt="Commercial Fishing gameplay" class="pixel-art full-width-image">
+                
                 
                 <br>
                 <h3 class="project-tagline">Linked Documents Across Two Desks</h3>
                 <p class="desc-text">
                     Each document spawns as a pair of prefabs: a small copy at the typewriter and a large, readable copy on the other desk. Each copy holds a reference to its partner. When a dragged copy crosses the desk boundary, it hands the drag to its partner at the cursor, so the paper appears to resize mid-drag.
                 </p>
+                
                 <p class="desc-text">
                     Draw order is handled by a shared stack. Clicking a document moves it to the top and reassigns the z-depth of every document and its children.
                 </p>
+                <img src="Images/ONI/oni2.gif" alt="Commercial Fishing gameplay" class="pixel-art full-width-image">
                 
                 <br>
                 <h3 class="project-tagline">Data Parsing and Document Pipeline</h3>
@@ -124,17 +129,23 @@
                     <li><strong>Other files.</strong> Chapter cards reuse the // format, and voice transcripts are parsed with a regex into timestamped subtitle lines.</li>
                 </ul>
 
+                <div class="code-block">
+                    <pre class="code-body"><code><span class="line"><span class="c-com">// MainDataset.cs</span></span><span class="line"><span class="c-com">// Loads Documents.txt before the first scene and splits it into days.</span></span><span class="line"><span class="c-com">// Each line is one document; a "//" line ends the current day.</span></span><span class="line">[<span class="c-type">RuntimeInitializeOnLoadMethod</span>(<span class="c-type">RuntimeInitializeLoadType</span>.<span class="c-var">BeforeSceneLoad</span>)]</span><span class="line"><span class="c-kw">private</span> <span class="c-kw">static</span> <span class="c-kw">void</span> <span class="c-fn">Initialize</span>() =&gt; <span class="c-fn">LoadData</span>();</span><span class="line"></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">static</span> <span class="c-kw">void</span> <span class="c-fn">LoadData</span>()</span><span class="line">{</span><span class="line">    <span class="c-type">TextAsset</span> <span class="c-var">textFile</span> = <span class="c-type">Resources</span>.<span class="c-fn">Load</span>&lt;<span class="c-type">TextAsset</span>&gt;(<span class="c-var">DocumentName</span>);</span><span class="line">    <span class="c-com">// . . .</span></span><span class="line">    <span class="c-kw">string</span>[] <span class="c-var">allLines</span> = <span class="c-var">textFile</span>.<span class="c-var">text</span>.<span class="c-fn">Split</span>(</span><span class="line">        <span class="c-kw">new</span>[] { <span class="c-str">"\r\n"</span>, <span class="c-str">"\r"</span>, <span class="c-str">"\n"</span> }, <span class="c-type">StringSplitOptions</span>.<span class="c-var">None</span>);</span><span class="line">    <span class="c-type">List</span>&lt;<span class="c-kw">string</span>&gt; <span class="c-var">currentGroup</span> = <span class="c-kw">new</span> <span class="c-type">List</span>&lt;<span class="c-kw">string</span>&gt;();</span><span class="line"></span><span class="line">    <span class="c-ctrl">foreach</span> (<span class="c-kw">string</span> <span class="c-var">line</span> <span class="c-kw">in</span> <span class="c-var">allLines</span>)</span><span class="line">    {</span><span class="line">        <span class="c-kw">string</span> <span class="c-var">trimmedLine</span> = <span class="c-var">line</span>.<span class="c-fn">Trim</span>();</span><span class="line">        <span class="c-ctrl">if</span> (<span class="c-var">trimmedLine</span> == <span class="c-str">"//"</span>)  <span class="c-com">// End of a day</span></span><span class="line">        {</span><span class="line">            <span class="c-ctrl">if</span> (<span class="c-var">currentGroup</span>.<span class="c-var">Count</span> &gt; <span class="c-num">0</span>)</span><span class="line">            {</span><span class="line">                <span class="c-var">DocumentGroups</span>.<span class="c-fn">Add</span>(<span class="c-kw">new</span> <span class="c-type">List</span>&lt;<span class="c-kw">string</span>&gt;(<span class="c-var">currentGroup</span>));</span><span class="line">                <span class="c-var">currentGroup</span>.<span class="c-fn">Clear</span>();</span><span class="line">            }</span><span class="line">        }</span><span class="line">        <span class="c-ctrl">else</span> <span class="c-ctrl">if</span> (!<span class="c-kw">string</span>.<span class="c-fn">IsNullOrWhiteSpace</span>(<span class="c-var">trimmedLine</span>))</span><span class="line">        {</span><span class="line">            <span class="c-var">currentGroup</span>.<span class="c-fn">Add</span>(<span class="c-var">trimmedLine</span>);</span><span class="line">        }</span><span class="line">    }</span><span class="line">    <span class="c-com">// . . .</span></span><span class="line">}</span></code></pre>
+                </div>
+
                 <br>
                 <h3 class="project-tagline">Adaptive Timer</h3>
                 <p class="desc-text">
                     Each document's time limit scales to the player: its word count divided by the player's measured WPM, plus a 15-second grace period. WPM uses the standard five-characters-per-word formula and only counts time spent actively typing. On timeout, an event marks the report late and skips the decision step.
                 </p>
+                <img src="Images/ONI/oni4.gif" alt="Commercial Fishing gameplay" class="pixel-art full-width-image">
                 
                 <br>
                 <h3 class="project-tagline">Branching Reactions</h3>
                 <p class="desc-text">
                     After each document, the player sends or discards the report by dragging it onto a tray. The outcome (Send, Discard, or Late) is combined with the day and document index into a file key, such as Day1_Doc2_Send. If a matching audio clip and transcript exist, a voicemail plays before the next document; if not, the game moves on. A new reaction needs only two files and no code.
                 </p>
+                <img src="Images/ONI/oni3.gif" alt="Commercial Fishing gameplay" class="pixel-art full-width-image">
                 
                 <br>
                 <h3 class="project-tagline">Architecture</h3>
@@ -144,6 +155,11 @@
                 <p class="desc-text">
                     Persistent singletons carry the game state, timer, and music across scenes, and re-bind to each new scene's objects on load. The camera is letterboxed to 16:9 and recalculated on window resize, which keeps the WebGL build correct in fullscreen.
                 </p>
+
+                <div class="code-block">
+                    <pre class="code-body"><code><span class="line"><span class="c-com">// TypewriterKey.cs</span></span><span class="line"><span class="c-com">// One static property controls whether the player can type.</span></span><span class="line"><span class="c-com">// Changing it fires an event instead of calling other scripts directly.</span></span><span class="line"><span class="c-kw">public</span> <span class="c-kw">static</span> <span class="c-kw">event</span> <span class="c-type">Action</span>&lt;<span class="c-kw">bool</span>&gt; <span class="c-var">OnCanTypeChanged</span>;</span><span class="line"></span><span class="line"><span class="c-kw">public</span> <span class="c-kw">static</span> <span class="c-kw">bool</span> <span class="c-var">CanType</span></span><span class="line">{</span><span class="line">    <span class="c-kw">get</span> =&gt; <span class="c-var">_canType</span>;</span><span class="line">    <span class="c-kw">set</span></span><span class="line">    {</span><span class="line">        <span class="c-ctrl">if</span> (<span class="c-var">_canType</span> == <span class="c-kw">value</span>) <span class="c-ctrl">return</span>;</span><span class="line">        <span class="c-var">_canType</span> = <span class="c-kw">value</span>;</span><span class="line">        <span class="c-var">OnCanTypeChanged</span>?.<span class="c-fn">Invoke</span>(<span class="c-var">_canType</span>);</span><span class="line">    }</span><span class="line">}</span><span class="line"></span><span class="line"><span class="c-com">// PaperFadeExit.cs (one of several listeners)</span></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">OnEnable</span>() =&gt; <span class="c-type">TypewriterKey</span>.<span class="c-var">OnCanTypeChanged</span> += <span class="c-var">HandleExitTrigger</span>;</span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">OnDisable</span>() =&gt; <span class="c-type">TypewriterKey</span>.<span class="c-var">OnCanTypeChanged</span> -= <span class="c-var">HandleExitTrigger</span>;</span><span class="line"></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">HandleExitTrigger</span>(<span class="c-kw">bool</span> <span class="c-var">canType</span>)</span><span class="line">{</span><span class="line">    <span class="c-com">// Typing just ended: slide the finished page out</span></span><span class="line">    <span class="c-ctrl">if</span> (!<span class="c-var">canType</span> &amp;&amp; !<span class="c-var">_isExiting</span>) <span class="c-fn">StartCoroutine</span>(<span class="c-fn">ExitRoutine</span>());</span><span class="line">}</span></code></pre>
+                </div>
+                
             </div>
 
             <hr class="section-divider">
@@ -161,17 +177,32 @@
                     <li>A booklet and two-page documents with open and closed states, and a statistical graph.</li>
                     <li>The parcel, the final letter, and a blinking cursor animation.</li>
                 </ul>
+
+                <img src="Images/ONI/oni-documents.png" alt="Commercial Fishing gameplay" class="pixel-art full-width-image">
+                <img src="Images/ONI/oni-props.png" alt="Commercial Fishing gameplay" class="pixel-art full-width-image">
+                
             </div>
 
             <hr class="section-divider">
             <div class="project-info">
-            <h2 class="section-title">Research & Story</h2>
-            <p class="desc-text">
-                The game's narrative is built on real historical sources. I read the primary documents collected in <i>The American Spirit, Volume II</i>, by Thomas A. Bailey and David M. Kennedy. 
-            </p>
-            <p class="desc-text">
-                From these I selected and condensed speeches, headlines, and government reports into the nine documents the player transcribes, arranged across four chapters from 1890 to 1929.
-            </p>
+                <h2 class="section-title">Research & Story</h2>
+                <p class="desc-text">
+                    The game's narrative is built on real historical sources. I read the primary documents collected in <i>The American Spirit, Volume II</i>, by Thomas A. Bailey and David M. Kennedy. 
+                </p>
+                <p class="desc-text">
+                    From these I selected and condensed speeches, headlines, and government reports into the nine documents the player transcribes, arranged across four chapters from 1890 to 1929.
+                </p>
+            </div>
+
+            <hr class="section-divider">
+            
+            <div class="links-container" style="align-items: flex-end;">
+                <div class="build-line">
+                    <span class="build-label">Web Version</span>
+                    <a href="https://ducktran.itch.io/oni-acts-of-omission" class="play-btn" target="_blank">Play</a>
+                </div>
+                <a href="https://ducktran.itch.io/oni-acts-of-omission/devlog/1451944/oni-devlog-1-blog-of-omission" class="link-text" target="_blank">Development Log</a>
+                <a href="https://github.com/KimHaAnhTran/ONI_ActsOfOmission" class="link-text">Open Source Code</a>
             </div>
 
         </section>
