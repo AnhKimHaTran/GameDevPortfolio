@@ -316,36 +316,7 @@ nav {
 /* --- Code Block (VS Code Dark+ style) --- */
 .code-block {
     background-color: #1e1e1e;
-    border-radius: 8px;
-    overflow: hidden;
     margin: 20px 0 30px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-}
-
-.code-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #2d2d2d;
-    padding: 10px 14px;
-    border-bottom: 1px solid #3c3c3c;
-}
-
-.code-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-}
-.code-dot.red    { background-color: #ff5f57; }
-.code-dot.yellow { background-color: #febc2e; }
-.code-dot.green  { background-color: #28c840; }
-
-.code-filename {
-    margin-left: 10px;
-    color: #cccccc;
-    font-family: Consolas, "Cascadia Code", "Courier New", monospace;
-    font-size: 0.95rem;
 }
 
 .code-body {
