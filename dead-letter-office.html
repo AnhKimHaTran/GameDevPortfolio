@@ -40,6 +40,16 @@
                     <span class="date">June 2025</span>
                 </div>
 
+                <div class="video-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/RvP9hGB5tNY"
+                        title="Dead Letter Office gameplay"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
                 <div class="project-body">
                     
                     <!-- Text Info Column -->
@@ -53,15 +63,6 @@
                         <br>
                         <p class="jam-note">➤ Developed as a passion project, a tribute to the <i>>Papers, Please</i> genre.</p>
                         <p class="jam-note">➤ Role: Solo Developer &amp; Artist</p>
-                        <br>
-
-                        <div class="links-container" style="align-items: flex-end;">
-                            <div class="build-line">
-                                <span class="build-label">Web Version</span>
-                                <a href="https://ducktran.itch.io/dead-letter-office" class="play-btn" target="_blank">Play</a>
-                            </div>
-                            <a href="https://github.com/AnhKimHaTran/DeadLetterOffice_Day1" class="link-text" target="_blank">Open Source Code</a>
-                        </div>
                     </div>
                     <!-- END Text Info Column -->
     
@@ -109,24 +110,37 @@
                 <p class="desc-text">
                     Invalid mail comes from a reserved "Discard" province with its own stamps. Generation flags can force a mail to be valid or faulty, so the Day 1 tutorial is scripted through the same generator.
                 </p>
+                <img src="Images/DeadLetterOffice/deadletter3.gif" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
                 
                 <br>
                 <h3 class="project-tagline">Review and Validation</h3>
                 <p class="desc-text">
                     The player fills in a review sheet whose nation and province fields are linked, so changing the nation limits the province options. On submit, the validator compares each field against MailProperties and prints a penalty ticket naming the first mismatch. The results feed an end-of-day salary screen.
                 </p>
+                <img src="Images/DeadLetterOffice/deadletter2.gif" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
                 
                 <br>
                 <h3 class="project-tagline">Desk Interaction</h3>
                 <p class="desc-text">
                     Dragging a document lifts it to the top of a z-sorted stack and spawns a stripped-down shadow clone that follows behind it. The reference books use enum-based page states to swap sprites and content.
                 </p>
+                <img src="Images/DeadLetterOffice/deadletter1.gif" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
+                
                 
                 <br>
                 <h3 class="project-tagline">Architecture</h3>
                 <p class="desc-text">
                     Scripts are grouped by object type, with each object's art, animations, and code in one folder, and organized into namespaces such as mailGenerator and interactObjects. Cutscenes run on Unity Timeline and call public methods on the audio pool and score tracker. The audio pool stores each source with its maximum volume in tuples, so one slider can scale all sound effects at once.
                 </p>
+
+                <div class="code-block">
+                    <pre class="code-body"><code><span class="line"><span class="c-com">// MailGenerator.cs</span></span><span class="line"><span class="c-com">// Builds one piece of mail at runtime by layering prefabs:</span></span><span class="line"><span class="c-com">// a random envelope, then a stamp from the sender's province on top.</span></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">_createMailWithStamp</span>()</span><span class="line">{</span><span class="line">    <span class="c-type">Vector3</span> <span class="c-var">stampPosition</span> = <span class="c-fn">_getRandomStampPosition</span>();</span><span class="line"></span><span class="line">    <span class="c-var">_mailClone</span> = <span class="c-fn">Instantiate</span>(<span class="c-var">_mailPrefab</span>, <span class="c-var">_mailSpawnPos</span>.<span class="c-var">position</span>, <span class="c-type">Quaternion</span>.<span class="c-var">identity</span>);</span><span class="line">    <span class="c-com">// . . .</span></span><span class="line"></span><span class="line">    <span class="c-com">// Store the generated answers on the mail itself (used later for scoring)</span></span><span class="line">    <span class="c-type">MailProperties</span> <span class="c-var">_mailCloneProperties</span> = <span class="c-var">_mailClone</span>.<span class="c-fn">GetComponent</span>&lt;<span class="c-type">MailProperties</span>&gt;();</span><span class="line">    <span class="c-var">_mailCloneProperties</span>.<span class="c-var">Local_senderNationName</span> = <span class="c-var">SenderNationName</span>;</span><span class="line">    <span class="c-var">_mailCloneProperties</span>.<span class="c-var">Local_senderProvinceName</span> = <span class="c-var">SenderProvinceName</span>;</span><span class="line">    <span class="c-com">// . . . (same for the receiver)</span></span><span class="line"></span><span class="line">    <span class="c-fn">_createStampClone</span>(<span class="c-var">_mailClone</span>, <span class="c-var">stampPosition</span>);</span><span class="line">    <span class="c-com">// . . .</span></span><span class="line">}</span><span class="line"></span><span class="line"><span class="c-com">// Stamp becomes a child of the envelope, with a random tilt so it looks hand-placed</span></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">_createStampClone</span>(<span class="c-type">GameObject</span> <span class="c-var">mailClone</span>, <span class="c-type">Vector3</span> <span class="c-var">position</span>)</span><span class="line">{</span><span class="line">    <span class="c-type">GameObject</span> <span class="c-var">stampClone</span> = <span class="c-fn">Instantiate</span>(</span><span class="line">        <span class="c-var">_stampPrefab</span>, <span class="c-var">transform</span>.<span class="c-var">position</span>, <span class="c-type">Quaternion</span>.<span class="c-var">identity</span>, <span class="c-var">mailClone</span>.<span class="c-var">transform</span>);</span><span class="line">    <span class="c-var">stampClone</span>.<span class="c-var">transform</span>.<span class="c-var">localPosition</span> = <span class="c-var">position</span>;</span><span class="line"></span><span class="line">    <span class="c-kw">float</span> <span class="c-var">rotateX</span> = <span class="c-type">Random</span>.<span class="c-fn">Range</span>(-<span class="c-var">_stampAngleMax</span>, <span class="c-var">_stampAngleMax</span>);</span><span class="line">    <span class="c-var">stampClone</span>.<span class="c-var">transform</span>.<span class="c-var">localRotation</span> = <span class="c-type">Quaternion</span>.<span class="c-fn">Euler</span>(<span class="c-num">0f</span>, <span class="c-num">0f</span>, <span class="c-var">rotateX</span>);</span><span class="line">}</span></code></pre>
+                </div>
+                
+                <div class="code-block">
+                    <pre class="code-body"><code><span class="line"><span class="c-com">// MainDataset.cs</span></span><span class="line"><span class="c-com">// Each envelope design has its own stamp area. The bounds are typed into</span></span><span class="line"><span class="c-com">// the Inspector as one flat list, then reshaped into one row per envelope.</span></span><span class="line"><span class="c-kw">public</span> <span class="c-kw">static</span> <span class="c-kw">void</span> <span class="c-fn">addToMailParameters</span>(</span><span class="line">    <span class="c-kw">float</span>[,] <span class="c-var">parameterList</span>, <span class="c-kw">float</span>[] <span class="c-var">parameter_continuousList</span>, <span class="c-kw">int</span> <span class="c-var">mailListLength</span>)</span><span class="line">{</span><span class="line">    <span class="c-kw">int</span> <span class="c-var">i</span> = <span class="c-num">0</span>;</span><span class="line">    <span class="c-kw">int</span> <span class="c-var">j</span> = <span class="c-num">0</span>;</span><span class="line">    <span class="c-ctrl">foreach</span> (<span class="c-kw">float</span> <span class="c-var">parameter</span> <span class="c-kw">in</span> <span class="c-var">parameter_continuousList</span>)</span><span class="line">    {</span><span class="line">        <span class="c-ctrl">if</span> (<span class="c-var">i</span> &gt;= <span class="c-var">mailListLength</span>) <span class="c-ctrl">return</span>;</span><span class="line">        <span class="c-var">parameterList</span>[<span class="c-var">i</span>, <span class="c-var">j</span>] = <span class="c-var">parameter</span>;   <span class="c-com">// [envelope, xLeft/xRight/yUp/yDown]</span></span><span class="line">        <span class="c-var">j</span>++;</span><span class="line">        <span class="c-ctrl">if</span> (<span class="c-var">j</span> &gt;= <span class="c-num">4</span>)</span><span class="line">        {</span><span class="line">            <span class="c-var">j</span> = <span class="c-num">0</span>;</span><span class="line">            <span class="c-var">i</span>++;</span><span class="line">        }</span><span class="line">    }</span><span class="line">}</span><span class="line"></span><span class="line"><span class="c-com">// Stamps are assigned per province by drag-and-drop, then stored in a</span></span><span class="line"><span class="c-com">// dictionary so the generator can look them up by province name.</span></span><span class="line"><span class="c-kw">public</span> <span class="c-kw">void</span> <span class="c-fn">IntializeProvinceStampDictionary_Republika</span>()</span><span class="line">{</span><span class="line">    <span class="c-com">// . . .</span></span><span class="line">    <span class="c-ctrl">foreach</span> (<span class="c-var">provinceNamesStampsClass_Republika</span> <span class="c-var">stamp</span> <span class="c-kw">in</span> <span class="c-var">collectStampsFromProvincesClass</span>)</span><span class="line">    {</span><span class="line">        <span class="c-var">StampProvinceDictionary</span>[<span class="c-var">stamp</span>.<span class="c-var">provinceName</span>] = <span class="c-var">stamp</span>.<span class="c-var">provinceStamp</span>;</span><span class="line">    }</span><span class="line">}</span></code></pre>
+                </div>
+                
             </div>
 
             <hr class="section-divider">
@@ -143,6 +157,21 @@
                     <li>A rulebook with stamp reference pages and a world map, and a tourist guide with ten province illustrations.</li>
                     <li>The desk, coffee cup, typewriter, review sheet, penalty ticket, bill, custom cursor, and game icon.</li>
                 </ul>
+            </div>
+            <img src="Images/DeadLetterOffice/dlo-mail.png" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
+            <img src="Images/DeadLetterOffice/dlo-provinces.png" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
+            <img src="Images/DeadLetterOffice/dlo-stamps.png" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
+            <img src="Images/DeadLetterOffice/dlo-sheets.png" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
+            <img src="Images/DeadLetterOffice/dlo-guidebook.png" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
+
+            <hr class="section-divider">
+
+            <div class="links-container" style="align-items: flex-end;">
+                <div class="build-line">
+                    <span class="build-label">Web Version</span>
+                    <a href="https://ducktran.itch.io/dead-letter-office" class="play-btn" target="_blank">Play</a>
+                </div>
+                <a href="https://github.com/AnhKimHaTran/DeadLetterOffice_Day1" class="link-text" target="_blank">Open Source Code</a>
             </div>
 
         </section>
