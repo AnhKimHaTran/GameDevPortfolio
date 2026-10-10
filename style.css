@@ -270,3 +270,43 @@ nav {
     height: 100%;
     border: 0;
 }
+
+/* --- Full-width image (same width as the section) --- */
+.full-width-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 30px auto;
+}
+
+/* --- Text on the left, image on the right --- */
+.text-with-image {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.text-with-image .text-column {
+    flex: 1;
+}
+
+.text-with-image .side-image {
+    width: 360px;
+    flex-shrink: 0;
+}
+
+.text-with-image .side-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Stack the image under the text on narrow screens */
+@media (max-width: 700px) {
+    .text-with-image {
+        flex-direction: column;
+    }
+    .text-with-image .side-image {
+        width: 100%;
+    }
+}
