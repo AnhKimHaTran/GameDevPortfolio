@@ -312,3 +312,80 @@ nav {
         width: 100%;
     }
 }
+
+/* --- Code Block (VS Code Dark+ style) --- */
+.code-block {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px 0 30px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.code-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #2d2d2d;
+    padding: 10px 14px;
+    border-bottom: 1px solid #3c3c3c;
+}
+
+.code-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.code-dot.red    { background-color: #ff5f57; }
+.code-dot.yellow { background-color: #febc2e; }
+.code-dot.green  { background-color: #28c840; }
+
+.code-filename {
+    margin-left: 10px;
+    color: #cccccc;
+    font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+    font-size: 0.95rem;
+}
+
+.code-body {
+    margin: 0;
+    padding: 16px 0;
+    overflow-x: auto;
+    font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #d4d4d4;
+    counter-reset: line;
+}
+
+.code-body code {
+    font-family: inherit;
+}
+
+/* Line numbers */
+.code-body .line {
+    display: block;
+    padding-right: 20px;
+    white-space: pre;
+}
+.code-body .line::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 3em;
+    margin-right: 1.5em;
+    text-align: right;
+    color: #858585;
+    user-select: none;
+}
+
+/* Syntax colors (VS Code Dark+) */
+.c-kw   { color: #569cd6; }  /* keywords: public, void, float */
+.c-ctrl { color: #c586c0; }  /* control flow: if, else, return */
+.c-type { color: #4ec9b0; }  /* types and classes */
+.c-fn   { color: #dcdcaa; }  /* method names */
+.c-var  { color: #9cdcfe; }  /* variables and fields */
+.c-str  { color: #ce9178; }  /* strings */
+.c-num  { color: #b5cea8; }  /* numbers */
+.c-com  { color: #6a9955; }  /* comments */
