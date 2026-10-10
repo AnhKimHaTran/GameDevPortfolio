@@ -43,7 +43,7 @@
                 <div class="video-container">
                     <iframe
                         src="https://www.youtube.com/watch?v=cHjR1aMtqjw"
-                        title="Commercial Fishing gameplay"
+                        title="The Flying Ducthman gameplay"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen>
@@ -98,7 +98,14 @@
                         </p>
                         
                         <br>
-                        <h3 class="project-tagline">Hazards</h3>
+                        
+                    </div>
+                    <div class="side-image">
+                        <img src="Images/FlyingDutchman/flyingdutchman3.gif" alt="Searchlight freezing an anomaly" class="pixel-art">
+                    </div>
+                </div>
+
+                <h3 class="project-tagline">Hazards</h3>
                         <p class="desc-text">
                             Each hazard has its own spawner on a timer.
                         </p>
@@ -110,17 +117,11 @@
                         <p class="desc-text">
                             The player fires cannonballs up or down (Z/X) on a 0.5-second cooldown. A cannonball destroys a tentacle on impact.
                         </p>
-                    </div>
-                    <div class="side-image">
-                        <img src="Images/FlyingDutchman/flyingdutchman3.gif" alt="Searchlight freezing an anomaly" class="pixel-art">
-                    </div>
-                </div>
 
                 <div class="code-block">
                     <pre class="code-body"><code><span class="line"><span class="c-com">// PlayerMovement.cs</span></span><span class="line"><span class="c-com">// The ship has no health bar. xPos is how far ahead of the Flying Dutchman</span></span><span class="line"><span class="c-com">// it is: every hit lowers xPos, and falling too far back ends the game.</span></span><span class="line"></span><span class="line"><span class="c-kw">void</span> <span class="c-fn">Update</span>()</span><span class="line">{</span><span class="line">    <span class="c-com">// ...aiming and camera shake omitted...</span></span><span class="line"></span><span class="line">    <span class="c-com">// Fell behind the threshold: trigger the bad ending</span></span><span class="line">    <span class="c-ctrl">if</span> (<span class="c-var">transform</span>.<span class="c-var">position</span>.<span class="c-var">x</span> &lt; -<span class="c-num">5f</span>)</span><span class="line">    {</span><span class="line">        <span class="c-fn">gameOver</span>();</span><span class="line">    }</span><span class="line"></span><span class="line">    <span class="c-com">// While a tentacle is latched on, keep dragging the ship backward</span></span><span class="line">    <span class="c-ctrl">if</span> (<span class="c-var">dragBack</span>)</span><span class="line">    {</span><span class="line">        <span class="c-var">xPos</span> -= <span class="c-num">0.05f</span>;</span><span class="line">    }</span><span class="line">}</span><span class="line"></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">updatePosition</span>()</span><span class="line">{</span><span class="line">    <span class="c-com">// Follow the mouse vertically, clamped to the screen</span></span><span class="line">    <span class="c-kw">float</span> <span class="c-var">yMousePos</span> = <span class="c-type">Mathf</span>.<span class="c-fn">Abs</span>(<span class="c-var">mousePos</span>.<span class="c-var">y</span>) &lt;= <span class="c-num">4.5f</span></span><span class="line">        ? <span class="c-var">mousePos</span>.<span class="c-var">y</span></span><span class="line">        : <span class="c-num">4.5f</span> * <span class="c-type">Mathf</span>.<span class="c-fn">Sign</span>(<span class="c-var">mousePos</span>.<span class="c-var">y</span>);</span><span class="line"></span><span class="line">    <span class="c-com">// xPos sets the horizontal target; the lerp eases the ship toward it</span></span><span class="line">    <span class="c-type">Vector2</span> <span class="c-var">targetPos</span> = <span class="c-kw">new</span> <span class="c-type">Vector2</span>(<span class="c-var">xPos</span>, <span class="c-var">yMousePos</span>);</span><span class="line">    <span class="c-var">transform</span>.<span class="c-var">position</span> = <span class="c-type">Vector2</span>.<span class="c-fn">Lerp</span>(</span><span class="line">        <span class="c-var">transform</span>.<span class="c-var">position</span>, <span class="c-var">targetPos</span>, <span class="c-type">Time</span>.<span class="c-var">deltaTime</span> * <span class="c-var">currentSpeed</span>);</span><span class="line">}</span><span class="line"></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">OnTriggerEnter2D</span>(<span class="c-type">Collider2D</span> <span class="c-var">collision</span>)</span><span class="line">{</span><span class="line">    <span class="c-com">// Whirlpool: knock the ship back toward the Flying Dutchman</span></span><span class="line">    <span class="c-ctrl">if</span> (<span class="c-var">collision</span>.<span class="c-var">gameObject</span>.<span class="c-fn">CompareTag</span>(<span class="c-str">"obstacle"</span>))</span><span class="line">    {</span><span class="line">        <span class="c-var">hitSFX</span>.<span class="c-fn">Play</span>();</span><span class="line">        <span class="c-var">shake</span> = <span class="c-kw">true</span>;</span><span class="line">        <span class="c-var">xPos</span> -= <span class="c-var">hitXPos</span>;</span><span class="line">    }</span><span class="line">    <span class="c-com">// Tentacle: knock back, slow down, and start dragging</span></span><span class="line">    <span class="c-ctrl">if</span> (<span class="c-var">collision</span>.<span class="c-var">gameObject</span>.<span class="c-fn">CompareTag</span>(<span class="c-str">"tentacle"</span>))</span><span class="line">    {</span><span class="line">        <span class="c-var">hitSFX</span>.<span class="c-fn">Play</span>();</span><span class="line">        <span class="c-var">shake</span> = <span class="c-kw">true</span>;</span><span class="line">        <span class="c-var">dragBack</span> = <span class="c-kw">true</span>;</span><span class="line">        <span class="c-var">currentSpeed</span> = <span class="c-var">slowerSpeed</span>;</span><span class="line">        <span class="c-var">xPos</span> -= <span class="c-num">1f</span>;</span><span class="line">    }</span><span class="line">    <span class="c-com">// Caught by the ghost ship</span></span><span class="line">    <span class="c-ctrl">if</span> (<span class="c-var">collision</span>.<span class="c-var">gameObject</span>.<span class="c-fn">CompareTag</span>(<span class="c-str">"dutchman"</span>))</span><span class="line">    {</span><span class="line">        <span class="c-fn">gameOver</span>();</span><span class="line">    }</span><span class="line">}</span><span class="line"></span><span class="line"><span class="c-com">// Tentacle gone (shot off by a cannonball): stop dragging, restore speed</span></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">OnTriggerExit2D</span>(<span class="c-type">Collider2D</span> <span class="c-var">collision</span>)</span><span class="line">{</span><span class="line">    <span class="c-ctrl">if</span> (<span class="c-var">collision</span>.<span class="c-var">gameObject</span>.<span class="c-fn">CompareTag</span>(<span class="c-str">"tentacle"</span>))</span><span class="line">    {</span><span class="line">        <span class="c-var">dragBack</span> = <span class="c-kw">false</span>;</span><span class="line">        <span class="c-var">currentSpeed</span> = <span class="c-var">speed</span>;</span><span class="line">    }</span><span class="line">}</span><span class="line"></span><span class="line"><span class="c-com">// Phase 2 only: holding Shift pushes the ship forward again</span></span><span class="line"><span class="c-kw">private</span> <span class="c-kw">void</span> <span class="c-fn">shiftKeyDetect</span>()</span><span class="line">{</span><span class="line">    <span class="c-ctrl">if</span> (<span class="c-type">Input</span>.<span class="c-fn">GetKey</span>(<span class="c-type">KeyCode</span>.<span class="c-var">LeftShift</span>) &amp;&amp; <span class="c-var">canShift</span>)</span><span class="line">    {</span><span class="line">        <span class="c-var">currentSpeed</span> = <span class="c-var">speed</span> + <span class="c-num">0.5f</span>;</span><span class="line">        <span class="c-var">xPos</span> += <span class="c-num">0.05f</span>;</span><span class="line">    }</span><span class="line">    <span class="c-ctrl">else</span></span><span class="line">    {</span><span class="line">        <span class="c-var">currentSpeed</span> = <span class="c-var">speed</span>;</span><span class="line">    }</span><span class="line">}</span></code></pre>
-                </di
+                </div>
 
-                <br>
                 <h3 class="project-tagline">Cutscenes and Dialogue</h3>
                 <p class="desc-text">
                     The story runs on Unity Timeline, with an early Yes/No choice that branches the intro and three endings. Dialogue is typed out character by character, with portraits that switch between the captain and the lieutenant. Music crossfades between calm and chase tracks through coroutines called from the Timeline.
@@ -149,12 +150,14 @@
 
                 <img src="Images/FlyingDutchman/flyingdutchman-ships.png" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
                 <img src="Images/FlyingDutchman/flyingdutchman-sprites.png" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
-                <img src="Images/FlyingDutchman/lightning-strike-spritesheet.png" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
-                <img src="Images/FlyingDutchman/flyingdutchman1.gif" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
 
                 <p class="desc-text">
                     I chose a limited, cool color palette composed of blues and turquoise to imitate a mariner feel.
                 </p>
+                
+                <img src="Images/FlyingDutchman/flyingdutchman1.gif" alt="Commercial Fishing sprites" class="pixel-art full-width-image">
+
+               
                 
             </div>
 
